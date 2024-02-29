@@ -1,0 +1,38 @@
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 1rem;
+    color: #000
+}
+
+.itemsContainer {
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+}
+
+.sideForm {
+    height: 28rem;
+    width: 18rem;
+    background-image: url("https://images.pexels.com/photos/114979/pexels-photo-114979.jpeg");
+    background-size: cover;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+    img {
+        width: 5rem;
+        padding: 1rem;
+    }
+}
+
+.formContent {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 1rem;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}   

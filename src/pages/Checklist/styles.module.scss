@@ -1,0 +1,50 @@
+.listContainer {
+    background-color: #011E5B;
+    width: 25rem;
+    padding: 1rem 1rem .5rem 1rem;
+    margin-top: 2rem;
+    border-radius: 8px;
+}
+
+.tasksContainer {
+    max-height: 55vh;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+        background-color: transparent;
+        border-radius: 20px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #1565C0;
+        border-radius: 20px;
+        height: 25px;
+    }
+}
+
+.taskContainerHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checklistAuthor {
+    display: flex;
+    align-items: center;
+    margin-top: .5rem;
+
+    img {
+        width: 2.19rem;
+        border-radius: 50%;
+        border: 2px solid #000;
+    }
+
+    p {
+        margin-left: .2rem;
+    }
+
+    span {
+        color: #fff;
+    }
+}

@@ -1,0 +1,28 @@
+.footer {
+    padding: 1rem;
+    background-color: rgb(2, 2, 58);
+    color: #fff;
+    display: grid;
+    place-content: center;
+    gap: .7rem;
+
+    .links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+
+        a {
+            font-size: 2rem;
+            color: #fff;
+        }
+    }
+
+    hr {
+        width: 30rem;
+    }
+
+    p {
+        text-align: center;
+        font-size: 1.2rem;
+    }
+}

@@ -1,0 +1,21 @@
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .box {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        background-color: #02023A;
+        padding: 2rem;
+        border-radius: 8px;
+        max-width: 35rem;
+
+    }
+
+    button {
+        margin-right: 1rem;
+    }
+}
