@@ -16,11 +16,7 @@ function useLogin() {
             localStorage.setItem("@token", token)
             navigate("/")
         } catch (error) {
-            if (error.response?.data?.message) {
-                toast.error(error.response.data.message)
-            } else {
-                console.error(error)
-            }
+            console.error(error)
         }
     }
 

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { authContext } from "../context/Auth"
 import { toast } from "react-toastify"
+import { authContext } from "../context/Auth"
 
 function useTask() {
     const { id } = useParams()
@@ -67,23 +67,22 @@ function useTask() {
                 tasks: prevState.checklist.tasks.filter(t => t._id !== task._id)
             }
         }))
+
         toast.success(`A task ${response.data.task.name} foi deleta com sucesso`)
     }
 
     const editTask = async (task) => {
-        try {
-            const response = await api.put(`/task/${task._id}`, { ...task, name: stateChecklist.name, description: stateChecklist.description })
-            setStateChecklist(prevState => ({
-                ...prevState,
-                checklist: {
-                    ...prevState.checklist,
-                    tasks: prevState.checklist.tasks.map(t => t._id === task._id ? { ...t, name: stateChecklist.name, description: stateChecklist.description } : t)
-                }
-            }))
-            toast.success(`A task ${response.data.task.name} foi editada com sucesso!`)
-        } catch (error) {
-            console.log(error)
-        }
+        const response = await api.put(`/task/${task._id}`, { ...task, name: stateChecklist.name, description: stateChecklist.description })
+
+        setStateChecklist(prevState => ({
+            ...prevState,
+            checklist: {
+                ...prevState.checklist,
+                tasks: prevState.checklist.tasks.map(t => t._id === task._id ? { ...t, name: stateChecklist.name, description: stateChecklist.description } : t)
+            }
+        }))
+
+        toast.success(`A task ${response.data.task.name} foi editada com sucesso!`)
     }
 
     return { handleCheckboxFunction, createTask, deleteTask, editTask, setStateChecklist, stateChecklist }

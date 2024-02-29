@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import api from "../services/apiBackend";
+import { useNavigate } from "react-router-dom";
 
 function useAuth() {
     const navigate = useNavigate()
@@ -17,21 +17,6 @@ function useAuth() {
         return getTokenLocalStorage
     })
 
-    useEffect(() => {
-        const verifyToken = async () => {
-            try {
-                await api.get("/verify-token");
-            } catch (error) {
-                if (error?.response?.status === 401) {
-                    logout()
-                } else {
-                    console.error(error)
-                }
-            }
-        };
-        verifyToken();
-    }, [token, user]);
-
     const logout = () => {
         localStorage.removeItem("@token")
         localStorage.removeItem("@user")
@@ -40,7 +25,17 @@ function useAuth() {
 
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
-    return { user, token, api, logout }
+    api.interceptors.response.use(
+        response => response,
+        error => {
+            if (error?.response?.status === 401) {
+                logout()
+            }
+            return Promise.reject(error);
+        }
+    );
+
+    return { user, api, logout }
 }
 
 export default useAuth
