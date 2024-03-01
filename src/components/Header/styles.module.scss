@@ -1,10 +1,30 @@
 .header {
-    padding: 1rem 1rem .5rem 1rem;
+    padding: 1rem 2rem .5rem 2rem;
     background-color: #02023a63;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    img {
+    .navContainer {
+        display: flex;
+        align-items: center;
+        gap: 5rem;
+
+        a {
+            color: #fff;
+            margin-left: 2rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    }
+
+    .logo {
         max-width: 4rem;
         transform: rotate(-25deg);
     }
 
+    .avatar {
+        max-width: 2.5rem;
+        border-radius: 50%;
+    }
 }
