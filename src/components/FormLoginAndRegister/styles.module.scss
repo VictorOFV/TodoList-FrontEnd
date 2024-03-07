@@ -7,6 +7,10 @@
     color: #000
 }
 
+h3 {
+    font-size: 1.3rem;
+}
+
 .itemsContainer {
     display: flex;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -14,7 +18,8 @@
 }
 
 .sideForm {
-    height: 28rem;
+    min-height: 32rem;
+    height: auto;
     width: 18rem;
     background-image: url("https://images.pexels.com/photos/114979/pexels-photo-114979.jpeg");
     background-size: cover;

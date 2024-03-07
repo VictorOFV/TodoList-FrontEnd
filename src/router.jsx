@@ -4,6 +4,7 @@ import Register from "./pages/Register"
 import Home from "./pages/Home"
 import MainLayout from "./layouts/MainLayout"
 import Checklist from "./pages/Checklist"
+import Settings from "./pages/Settings"
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
         {
             path: "/checkList/:id",
             element: <Checklist />
+        },
+        {
+            path: "/settings",
+            element: <Settings />
         }
         ]
     }

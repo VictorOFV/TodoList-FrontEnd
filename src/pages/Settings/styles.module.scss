@@ -1,0 +1,35 @@
+.inputsContaienr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    label {
+        color: #fff;
+    }
+
+    input {
+        background-color: #24246e87;
+        color: #fff;
+    }
+
+    .inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        max-width: 38rem;
+        padding: 2rem 1rem;
+        border-radius: 8px;
+        background-color: #01114C;
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+        }
+    }
+
+    .inlineInputs {
+        display: flex;
+        gap: 1rem;
+    }
+}

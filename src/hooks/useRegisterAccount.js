@@ -5,12 +5,13 @@ import { toast } from "react-toastify"
 function useRegisterAccount() {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
+    const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
 
     const register = async () => {
         try {
-            const response = await api.post("/users", { name, email, password, confirmPassword })
+            await api.post("/users", { name, email, username, password, confirmPassword })
             setName("")
             setEmail("")
             setPassword("")
@@ -29,7 +30,7 @@ function useRegisterAccount() {
         register()
     }
 
-    return { name, email, password, confirmPassword, setName, setEmail, setPassword, setConfirmPassword, handleSubmit }
+    return { name, email, username, password, confirmPassword, setName, setEmail, setUsername, setPassword, setConfirmPassword, handleSubmit }
 }
 
 export default useRegisterAccount
