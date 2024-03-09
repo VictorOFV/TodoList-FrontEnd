@@ -8,20 +8,23 @@ function useRegisterAccount() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
+    const [loading, setLoading] = useState(false)
 
     const register = async () => {
         try {
+            setLoading(true)
             await api.post("/users", { name, email, username, password, confirmPassword })
             setName("")
             setEmail("")
+            setUsername("")
             setPassword("")
             setConfirmPassword("")
 
             toast.success("Conta criada com sucesso!")
         } catch (error) {
-            if (error?.response?.data?.message) {
-                toast.error(error?.response?.data?.message)
-            }
+            console.error(error)
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -30,7 +33,7 @@ function useRegisterAccount() {
         register()
     }
 
-    return { name, email, username, password, confirmPassword, setName, setEmail, setUsername, setPassword, setConfirmPassword, handleSubmit }
+    return { name, email, username, password, confirmPassword, loading, setName, setEmail, setUsername, setPassword, setConfirmPassword, handleSubmit }
 }
 
 export default useRegisterAccount
