@@ -3,7 +3,6 @@ import { LoadingButton } from "@mui/lab"
 import styles from "../../styles/settingsLayout.module.scss"
 import useAccountInformation from "../../hooks/useAccountInformation"
 
-
 function Settings() {
     const { userInfo, loading, handleSubmit, setUserInfo } = useAccountInformation()
 
@@ -12,15 +11,47 @@ function Settings() {
             <div className={styles.inputsContaienr}>
                 <form className={styles.inputs} onSubmit={handleSubmit}>
                     <h3>Informações da Conta</h3>
-                    <TextField fullWidth variant="filled" label="Nome" value={userInfo.name} onChange={ev => setUserInfo(oldValue => ({ ...oldValue, name: ev.target.value }))} />
-                    <TextField type="email" fullWidth variant="filled" label="Email" value={userInfo.email} onChange={ev => setUserInfo(oldValue => ({ ...oldValue, email: ev.target.value }))} />
-                    <TextField fullWidth variant="filled" label="Usuário" value={userInfo.username} onChange={ev => setUserInfo(oldValue => ({ ...oldValue, username: ev.target.value }))} />
+
+                    <TextField
+                        fullWidth
+                        name="name"
+                        variant="filled"
+                        label="Nome"
+                        value={userInfo.name}
+                        onChange={ev => setUserInfo(oldValue => ({ ...oldValue, name: ev.target.value }))}
+                    />
+                    <TextField
+                        fullWidth
+                        name="email"
+                        type="email"
+                        variant="filled"
+                        label="Email"
+                        value={userInfo.email}
+                        onChange={ev => setUserInfo(oldValue => ({ ...oldValue, email: ev.target.value }))}
+                    />
+                    <TextField
+                        fullWidth
+                        name="username"
+                        variant="filled"
+                        label="Usuário"
+                        value={userInfo.username}
+                        onChange={ev => setUserInfo(oldValue => ({ ...oldValue, username: ev.target.value }))}
+                    />
 
                     <div className={styles.inlineInputs}>
-                        <TextField type="date" variant="filled" fullWidth label="Data de Nascimento" value={userInfo.dateOfBirth ?? "yyyy-MM-dd"} onChange={ev => setUserInfo(oldValue => ({ ...oldValue, dateOfBirth: ev.target.value }))} />
+                        <TextField
+                            fullWidth
+                            name="date-of-birth"
+                            type="date"
+                            variant="filled"
+                            label="Data de Nascimento"
+                            value={userInfo.dateOfBirth ?? "yyyy-MM-dd"}
+                            onChange={ev => setUserInfo(oldValue => ({ ...oldValue, dateOfBirth: ev.target.value }))}
+                        />
                         <FormControl variant="filled" fullWidth>
                             <InputLabel id="select">Gênero</InputLabel>
                             <Select
+                                name="gender"
                                 label="Gênero"
                                 labelId="select"
                                 value={userInfo.gender}
@@ -41,7 +72,17 @@ function Settings() {
                     </div>
 
 
-                    <LoadingButton loading={loading} type="submit" color="success" variant="contained">
+                    <LoadingButton
+                        loading={loading}
+                        type="submit"
+                        color="success"
+                        variant="contained"
+                        sx={{
+                            '& .MuiCircularProgress-root': {
+                                color: '#fff',
+                            }
+                        }}
+                    >
                         Salvar
                     </LoadingButton>
                 </form>

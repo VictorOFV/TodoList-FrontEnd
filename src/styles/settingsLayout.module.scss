@@ -45,7 +45,26 @@
             filter: invert(1);
             cursor: pointer;
         }
-    
+
+        /* Altera a cor do ícone do olho nos navegadores baseados em Chromium (Chrome, Edge, etc.) */
+        input[type="password"]::-webkit-password-swing-button {
+            filter: invert(1);
+        }
+
+        /* Altera a cor do ícone do olho no Firefox */
+        input[type="password"]::-moz-password-swing-button {
+            filter: invert(1);
+        }
+
+        /* Altera a cor do ícone do olho no Edge antigo (EdgeHTML) */
+        input[type="password"]::-ms-reveal {
+            filter: invert(1);
+        }
+
+        /* Altera a cor do ícone do olho no novo Edge (baseado em Chromium) */
+        input[type="password"]::-ms-clear {
+            filter: invert(1);
+        }
     }
 
     .inlineInputs {
