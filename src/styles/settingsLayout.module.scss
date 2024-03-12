@@ -1,3 +1,22 @@
+.linksContainer {
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    a {
+        color: #fff;
+        text-decoration: none;
+        margin-right: 2rem;
+        text-transform: uppercase;
+        border-bottom: 2px solid transparent;
+        transition: .5s;
+        padding-bottom: .1rem;
+        font-weight: 300;
+    }
+}
+
 .inputsContaienr {
     display: flex;
     flex-direction: column;
@@ -26,6 +45,7 @@
             filter: invert(1);
             cursor: pointer;
         }
+    
     }
 
     .inlineInputs {

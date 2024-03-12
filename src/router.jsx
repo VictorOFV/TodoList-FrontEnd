@@ -4,7 +4,9 @@ import Register from "./pages/Register"
 import Home from "./pages/Home"
 import MainLayout from "./layouts/MainLayout"
 import Checklist from "./pages/Checklist"
-import Settings from "./pages/Settings"
+import AccountInformation from "./pages/AccountInformation"
+import SettingsLeyout from "./layouts/SettingsLayout"
+import ChangePassword from "./pages/ChangePassword"
 
 const router = createBrowserRouter([
     {
@@ -28,7 +30,17 @@ const router = createBrowserRouter([
         },
         {
             path: "/settings",
-            element: <Settings />
+            element: <SettingsLeyout />, 
+            children: [
+                {
+                    index: true,
+                    element: <AccountInformation />
+                },
+                {
+                    path: "change-password",
+                    element: <ChangePassword />
+                }
+            ]
         }
         ]
     }

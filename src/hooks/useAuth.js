@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import api from "../services/apiBackend";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../services/apiBackend";
 
 function useAuth() {
     const navigate = useNavigate()
 
-    const [user] = useState(() => {
+    const [user, setUser] = useState(() => {
         const getUserLocalStorage = localStorage.getItem("@user")
         if (!getUserLocalStorage) return null
         return JSON.parse(getUserLocalStorage)
@@ -13,7 +13,7 @@ function useAuth() {
 
     const [token] = useState(() => {
         const getTokenLocalStorage = localStorage.getItem("@token")
-        if (!getTokenLocalStorage) return ""
+        if (!getTokenLocalStorage) return null
         return getTokenLocalStorage
     })
 
@@ -35,7 +35,7 @@ function useAuth() {
         }
     );
 
-    return { user, api, logout }
+    return { user, api, logout, setUser }
 }
 
 export default useAuth

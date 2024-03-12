@@ -5,12 +5,12 @@ import useAuth from "../hooks/useAuth";
 const authContext = createContext()
 
 function AuthProvider({ children }) {
-    const { user, logout, api } = useAuth()
+    const { user, logout, api, setUser } = useAuth()
 
     if (!user) return <Navigate to={"/login"} />
 
     return (
-        <authContext.Provider value={{ logout, user, api }}>
+        <authContext.Provider value={{ logout, user, api, setUser }}>
             {children}
         </authContext.Provider>
     )
