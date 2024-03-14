@@ -7,6 +7,7 @@ import Checklist from "./pages/Checklist"
 import AccountInformation from "./pages/AccountInformation"
 import SettingsLeyout from "./layouts/SettingsLayout"
 import ChangePassword from "./pages/ChangePassword"
+import GlobalTasks from "./pages/GlobalTasks"
 
 const router = createBrowserRouter([
     {
@@ -25,12 +26,16 @@ const router = createBrowserRouter([
             element: <Home />
         },
         {
+            path: "/global-tasks",
+            element: <GlobalTasks />
+        },
+        {
             path: "/checkList/:id",
             element: <Checklist />
         },
         {
             path: "/settings",
-            element: <SettingsLeyout />, 
+            element: <SettingsLeyout />,
             children: [
                 {
                     index: true,

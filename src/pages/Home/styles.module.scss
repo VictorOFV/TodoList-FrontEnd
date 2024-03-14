@@ -1,10 +1,16 @@
 .checklistsContainer {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.3rem;
+    gap: 1rem;
     margin-top: 1rem;
 }
 
 a {
     text-decoration: none;
+}
+
+.buttonFloat {
+    position: relative;
+    left: 90%;
+    top: 70vh;
 }

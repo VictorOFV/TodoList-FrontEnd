@@ -2,9 +2,16 @@
     padding: 1rem;
     background-color: rgb(2, 2, 58);
     color: #fff;
-    display: grid;
-    place-content: center;
-    gap: .7rem;
+    display: flex;
+    justify-content: center;
+
+    .footerContainer {
+        display: grid;
+        place-content: center;
+        gap: .7rem;
+        max-width: 1200px;
+        width: 100%;
+    }
 
     .links {
         display: flex;

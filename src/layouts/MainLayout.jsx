@@ -9,8 +9,8 @@ function MainLayout() {
             <AuthProvider>
                 <div style={{ display: "flex", flexDirection: "column", height: "100vh"}}>
                     <Header />
-                    <div style={{ flex: "1", padding: "1rem" }}>
-                        <Outlet />
+                    <div style={{ flex: "1", padding: "1rem", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                        <Outlet/>
                     </div>
                     <Footer />
                 </div>

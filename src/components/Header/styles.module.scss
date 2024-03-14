@@ -1,9 +1,16 @@
 .header {
-    padding: 1rem 2rem .5rem 2rem;
     background-color: #02023a63;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    padding: 1rem 1rem .5rem 1rem;
+
+    .headerContainer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        width: 100%;
+    }
 
     .navContainer {
         display: flex;

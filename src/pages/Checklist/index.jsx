@@ -1,8 +1,7 @@
 
-import { IconButton } from "@mui/material"
+import { Avatar, IconButton } from "@mui/material"
 import { MdAddTask } from "react-icons/md";
 import styles from "./styles.module.scss"
-import avatar from "../../assets/avatar.jpg"
 import Task from "../../components/Task";
 import FormModalTask from "../../components/FormModalTask";
 import useTask from "../../hooks/useTask";
@@ -43,7 +42,11 @@ function Checklist() {
                             ))}
                         </div>
                         <div className={styles.checklistAuthor}>
-                            <img src={avatar} />
+                            <Avatar
+                                src={stateChecklist.checklist.author.avatar}
+                                sx={{ width: 32, height: 32 }}
+                                >
+                                {stateChecklist.checklist.author.name[0]}</Avatar>
                             <p>Criado por <span>{stateChecklist.checklist.author.name}</span></p>
                         </div>
                     </div>
