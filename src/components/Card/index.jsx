@@ -19,7 +19,7 @@ function Card({ checklist, image, avatar }) {
                 </div>
                 <div className={styles.checklistInfo}>
                     <span className={styles.alignElements} style={{ color: "red" }}><FaFontAwesomeFlag /> Alta</span>
-                    <span className={styles.alignElements}><FaRegClock /> {creationTime}</span>
+                    <span className={styles.alignElements}><FaRegClock />{creationTime}</span>
                 </div>
                 <div className={styles.checklistAuthor}>
                     <Avatar

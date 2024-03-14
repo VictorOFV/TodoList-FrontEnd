@@ -18,8 +18,8 @@ function getLargestTimeDifference(date1, date2) {
         return `${hoursDiff} hora${hoursDiff !== 1 ? 's' : ''}`;
     } else if (minutesDiff > 0) {
         return `${minutesDiff} minuto${minutesDiff !== 1 ? 's' : ''}`
-    } else if (secondsDiff > 0) {
-        return `${minutesDiff} segundo${secondsDiff !== 1 ? 's' : ''}`
+    } else {
+        return `${secondsDiff} segundo${secondsDiff !== 1 ? 's' : ''}`
     }
 }
 

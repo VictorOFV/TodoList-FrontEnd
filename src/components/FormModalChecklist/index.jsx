@@ -2,11 +2,12 @@ import { Box, Button, FormControl, InputLabel, MenuItem, Modal, Select, TextFiel
 import styles from "./styles.module.scss"
 import { useCallback, useState } from "react"
 import { useDropzone } from "react-dropzone"
+import { LoadingButton } from "@mui/lab"
 
-function FormModalChecklist({ children, openModal, closeModal, checklistData, setChecklistData, submitFunction }) {
+function FormModalChecklist({ children, openModal, closeModal, checklistData, setChecklistData, submitFunction, buttonLoading }) {
     const onDrop = useCallback((file) => {
         const fileUrl = URL.createObjectURL(file[0])
-        setChecklistData(prevState => ({ ...prevState, icon: file[0], imageURL: fileUrl}))
+        setChecklistData(prevState => ({ ...prevState, icon: file[0], imageURL: fileUrl }))
     }, [])
 
     const { getRootProps, getInputProps } = useDropzone({ onDrop, multiple: false });
@@ -95,9 +96,17 @@ function FormModalChecklist({ children, openModal, closeModal, checklistData, se
                 </div>
                 <div className={styles.modalFooter}>
                     <div>
-                        <Button variant="contained" color="success" onClick={submitFunction}>
+                        <LoadingButton 
+                        loading={buttonLoading} 
+                        variant="contained" 
+                        color="success" 
+                        onClick={submitFunction}
+                        sx={{".MuiCircularProgress-svg": {
+                            color: "#fff"
+                        }}}
+                        >
                             Salvar
-                        </Button>
+                        </LoadingButton>
                         <Button variant="contained" color="error" onClick={closeModal}>
                             Cancelar
                         </Button>
