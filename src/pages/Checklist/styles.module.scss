@@ -1,13 +1,52 @@
+.checklistHeader {
+    background-color: #011E5B;
+    padding: 1rem;
+    height: 9rem;
+    display: flex;
+    gap: 1rem;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    .iconChecklist {
+        width: 8rem;
+        height: 8rem;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    h1 {
+        text-decoration: underline;
+    }
+
+    .descriptionContainer {
+        height: 5rem;
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            width: 5px;
+            background-color: transparent;
+            border-radius: 20px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #1565C0;
+            border-radius: 20px;
+            height: 25px;
+        }
+    }
+}
+
 .listContainer {
     background-color: #011E5B;
     width: 25rem;
-    padding: 1rem 1rem .5rem 1rem;
-    margin-top: 2rem;
-    border-radius: 8px;
+    padding: .5rem 1rem;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .tasksContainer {
-    max-height: 55vh;
+    max-height: 53vh;
     overflow: auto;
 
     &::-webkit-scrollbar {
@@ -33,7 +72,7 @@
     display: flex;
     align-items: center;
     margin-top: .5rem;
-    
+
     p {
         margin-left: .2rem;
     }

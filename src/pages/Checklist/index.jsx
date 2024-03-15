@@ -5,6 +5,7 @@ import styles from "./styles.module.scss"
 import Task from "../../components/Task";
 import FormModalTask from "../../components/FormModalTask";
 import useTask from "../../hooks/useTask";
+import iconNotFound from "../../assets/iconNotFound.jpg"
 
 function Checklist() {
     const { createTask, deleteTask, handleCheckboxFunction, editTask, setStateChecklist, stateChecklist } = useTask()
@@ -13,9 +14,15 @@ function Checklist() {
         <main>
             {!stateChecklist.checklist ? (<h2>Carregando...</h2>) : (
                 <div>
-                    <h1>{stateChecklist.checklist.name}</h1>
-                    <p>{stateChecklist.checklist.description}</p>
-
+                    <div className={styles.checklistHeader}>
+                        <img className={styles.iconChecklist} src={stateChecklist.checklist.icon ?? iconNotFound} />
+                        <div>
+                            <h1>{stateChecklist.checklist.name}</h1>
+                            <div className={styles.descriptionContainer}>
+                                <p>{stateChecklist.checklist.description}</p>
+                            </div>
+                        </div>
+                    </div>
                     <div className={styles.listContainer}>
                         <div className={styles.taskContainerHeader}>
                             <h2>Tasks</h2>
@@ -45,7 +52,7 @@ function Checklist() {
                             <Avatar
                                 src={stateChecklist.checklist.author.avatar}
                                 sx={{ width: 32, height: 32 }}
-                                >
+                            >
                                 {stateChecklist.checklist.author.name[0]}</Avatar>
                             <p>Criado por <span>{stateChecklist.checklist.author.name}</span></p>
                         </div>
