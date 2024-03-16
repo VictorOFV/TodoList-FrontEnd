@@ -37,7 +37,7 @@ function useChecklist() {
             cleanInputs()
             setChecklists(prevState => ([...prevState, response.data.checklist]))
 
-            toast.success(`A checklist ${response.data.checklist.name} foi criada com sucesso!`)
+            toast.success(`A checklist ${response.data.checklist.name} foi criada com sucesso! 😄`)
         } catch (error) {
             console.error(error)
         } finally {
@@ -62,8 +62,9 @@ function useChecklist() {
             formData.append('author', user._id);
 
             const response = await api.put(`/checklist/${checklist._id}`, formData)
-            console.log(response)
             setChecklists(prevState => prevState.map(check => check._id === checklist._id ? response.data.checklist : check))
+
+            toast.success(`A checklist ${response.data.checklist.name} foi editada com sucesso! 😄`)
         } catch (error) {
             console.error(error)
         } finally {
@@ -82,7 +83,22 @@ function useChecklist() {
         }
     }
 
-    return { openModal, buttonLoading, checklistData, checklists, setOpenModal, handleCloseModal, createChecklist, updateChecklist, deleteChecklist, cleanInputs, setChecklistData }
+    const checklistsUserFilter = checklists.filter(check => check.author._id === user._id)
+
+    return {
+        openModal,
+        buttonLoading,
+        checklistData,
+        checklists,
+        checklistsUserFilter,
+        setOpenModal,
+        handleCloseModal,
+        createChecklist,
+        updateChecklist,
+        deleteChecklist,
+        cleanInputs,
+        setChecklistData
+    }
 }
 
 export default useChecklist

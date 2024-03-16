@@ -6,9 +6,12 @@ import Task from "../../components/Task";
 import FormModalTask from "../../components/FormModalTask";
 import useTask from "../../hooks/useTask";
 import iconNotFound from "../../assets/iconNotFound.jpg"
+import { useContext } from "react";
+import { authContext } from "../../context/Auth";
 
 function Checklist() {
     const { createTask, deleteTask, handleCheckboxFunction, editTask, setStateChecklist, stateChecklist } = useTask()
+    const { user } = useContext(authContext)
 
     return (
         <main>
@@ -26,14 +29,16 @@ function Checklist() {
                     <div className={styles.listContainer}>
                         <div className={styles.taskContainerHeader}>
                             <h2>Tasks</h2>
-                            <IconButton
-                                onClick={() => setStateChecklist(prevState => ({ ...prevState, modalNewTask: true }))}
-                                aria-label="add Task"
-                                color="inherit"
-                                size="large">
+                            {stateChecklist.checklist.author._id === user._id ? (
+                                <IconButton
+                                    onClick={() => setStateChecklist(prevState => ({ ...prevState, modalNewTask: true }))}
+                                    aria-label="add Task"
+                                    color="inherit"
+                                    size="large">
 
-                                <MdAddTask />
-                            </IconButton>
+                                    <MdAddTask />
+                                </IconButton>
+                            ) : null}
                         </div>
                         <div className={styles.tasksContainer}>
                             {stateChecklist.checklist.tasks.map(task => (

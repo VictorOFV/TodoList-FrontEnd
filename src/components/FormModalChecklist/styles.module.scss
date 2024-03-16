@@ -12,11 +12,15 @@
         border-radius: 8px;
     }
 
-    .modalHeader {
+    .modalHeader {  
         padding: 1rem;
         background-color: #1976D2;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        font-size: 1.4rem;
     }
 
     .modalBody {

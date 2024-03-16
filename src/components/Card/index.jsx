@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Avatar, IconButton } from "@mui/material";
 import { FaEdit, FaFontAwesomeFlag, FaRegClock } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -8,10 +8,12 @@ import getLargestTimeDifference from "../../utils/getLargestTimeDifference";
 import iconNotFound from "../../assets/iconNotFound.jpg"
 import Confirm from "../Confirm";
 import FormModalChecklist from "../FormModalChecklist";
+import { authContext } from "../../context/Auth";
 
 function Card({ checklist, deleteChecklist, updateChecklist, checklistData, setChecklistData, cleanInputs, buttonLoading }) {
     const [openConfirm, setOpenConfirm] = useState(false)
     const [openModalEdit, setOpenModalEdit] = useState(false)
+    const { user } = useContext(authContext)
     const creationTime = getLargestTimeDifference(checklist.createdAt, new Date())
 
     const priorityObj = {
@@ -44,14 +46,16 @@ function Card({ checklist, deleteChecklist, updateChecklist, checklistData, setC
 
     return (
         <div className={styles.card}>
-            <div className={styles.buttons}>
-                <IconButton size="small" onClick={handleOpenModal}>
-                    <FaEdit />
-                </IconButton>
-                <IconButton size="small" onClick={() => setOpenConfirm(true)}>
-                    <MdDelete />
-                </IconButton>
-            </div>
+            {user._id === checklist.author._id ? (
+                <div className={styles.buttons}>
+                    <IconButton size="small" onClick={handleOpenModal}>
+                        <FaEdit />
+                    </IconButton>
+                    <IconButton size="small" onClick={() => setOpenConfirm(true)}>
+                        <MdDelete />
+                    </IconButton>
+                </div>
+            ) : null}
             <Link to={`/checklist/${checklist._id}`}>
                 <div className={styles.checklist}>
                     <img className={styles.checklistIcon} src={checklist.icon ?? iconNotFound} />
@@ -95,9 +99,8 @@ function Card({ checklist, deleteChecklist, updateChecklist, checklistData, setC
                 closeModal={handleCloseModal}
                 buttonLoading={buttonLoading}
                 submitFunction={() => updateChecklist(checklist)}
-            >
-
-            </FormModalChecklist>
+                modalTitle={"Editar Checklist"}
+            />
         </div>
     )
 }
