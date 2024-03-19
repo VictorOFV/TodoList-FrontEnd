@@ -1,0 +1,19 @@
+.userInfo {
+    color: #b8b7b7;
+
+    a {
+        color: #276ee1;
+    }
+
+    div,
+    span {
+        display: flex;
+        align-items: center;
+        gap: .2rem;
+        margin-right: .5rem;
+    }
+
+    svg {
+        font-size: 1.1rem;
+    }
+}

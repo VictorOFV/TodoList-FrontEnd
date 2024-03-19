@@ -1,0 +1,37 @@
+.names {
+    margin-top: .2rem;
+    margin-left: 14rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+
+    button {
+        border-radius: 5rem;
+        text-transform: none;
+    }
+}
+
+.followers {
+    color: #b8b7b7;
+    font-size: .9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    >span {
+        margin-left: .3rem;
+        cursor: pointer;
+        padding: .19rem .3rem;
+        border: 1.5px solid #fff;
+        border-radius: 2rem;
+    }
+
+    .followValue {
+        color: #fff;
+        font-weight: bold;
+    }
+}
+
+.username {
+    color: #b8b7b7;
+}

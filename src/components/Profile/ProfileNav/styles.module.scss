@@ -1,0 +1,31 @@
+.nav {
+    display: flex;
+
+    .active {
+        border-bottom-color: #276ee1;
+
+        button {
+            background-color: #02023A;
+            color: #276ee1;
+        }
+    }
+
+    a {
+        border-bottom: 2px solid transparent;
+        transition: .5s;
+
+        button {
+            color: #fff;
+            font-size: .9rem;
+            padding: .8rem;
+            background-color: #011853;
+            text-align: center;
+            text-transform: uppercase;
+            transition: .3s;
+
+            &:hover {
+                background-color: #011445;
+            }
+        }
+    }
+}

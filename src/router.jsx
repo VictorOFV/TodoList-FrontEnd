@@ -8,6 +8,10 @@ import AccountInformation from "./pages/AccountInformation"
 import SettingsLeyout from "./layouts/SettingsLayout"
 import ChangePassword from "./pages/ChangePassword"
 import GlobalTasks from "./pages/GlobalTasks"
+import ProfileLayout from "./layouts/ProfileLayout"
+import ProfileChecklists from "./pages/ProfileChecklists"
+import ProfileTasks from "./pages/ProfileTasks"
+import ProfileComments from "./pages/ProfileComments"
 
 const router = createBrowserRouter([
     {
@@ -34,6 +38,10 @@ const router = createBrowserRouter([
             element: <Checklist />
         },
         {
+            path: "profile/:username",
+            element: <ProfileLayout />
+        },
+        {
             path: "/settings",
             element: <SettingsLeyout />,
             children: [
@@ -44,6 +52,24 @@ const router = createBrowserRouter([
                 {
                     path: "change-password",
                     element: <ChangePassword />
+                }
+            ]
+        },
+        {
+            path: "/profile/:username",
+            element: <ProfileLayout />,
+            children: [
+                {
+                    index: true,
+                    element: <ProfileChecklists />
+                },
+                {
+                    path: "tasks",
+                    element: <ProfileTasks />
+                },
+                {
+                    path: "comments",
+                    element: <ProfileComments />
                 }
             ]
         }
