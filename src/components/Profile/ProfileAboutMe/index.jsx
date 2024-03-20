@@ -1,16 +1,13 @@
 import { BiSolidUserDetail } from "react-icons/bi"
-import { useContext } from "react"
-import { authContext } from "../../../context/Auth"
 import styles from "./styles.module.scss"
 
-function ProfileAboutMe() {
-    const { user } = useContext(authContext)
+function ProfileAboutMe({ userProfile, loading }) {
     return (
         <div className={styles.bio}>
             <h4 className={styles.aboutMeText}>
                 <BiSolidUserDetail size={25} /> SOBRE MIM
             </h4>
-            <p>{user.bio}</p>
+            {loading ? (<Skeleton count={2}/>) : (<p>{userProfile.bio}</p>)}
         </div>
     )
 }

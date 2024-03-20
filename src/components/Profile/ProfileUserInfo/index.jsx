@@ -1,14 +1,10 @@
-import { useContext } from "react"
-import { authContext } from "../../../context/Auth"
 import { PiSuitcaseSimple } from "react-icons/pi"
 import { SlLocationPin } from "react-icons/sl"
 import { HiLink } from "react-icons/hi2"
 import { LiaBirthdayCakeSolid, LiaCalendarSolid } from "react-icons/lia"
 import styles from "./styles.module.scss"
 
-function ProfileUserInfo() {
-    const { user } = useContext(authContext) 
-    
+function ProfileUserInfo({ userProfile }) {
     return (
         <div className={styles.userInfo}>
             <div>
@@ -17,9 +13,9 @@ function ProfileUserInfo() {
             </div>
             <div>
                 <span><HiLink /><a href="http://github.com/VictorOFV">github.com/VictorOFV</a></span>
-                <span><LiaBirthdayCakeSolid /> Nascido em {new Date(user.dateOfBirth).toLocaleDateString()}</span>
+                <span><LiaBirthdayCakeSolid /> Nascido em {new Date(userProfile.dateOfBirth).toLocaleDateString()}</span>
             </div>
-            <span><LiaCalendarSolid />Ingressou em {new Date(user.createdAt).toDateString()}</span>
+            <span><LiaCalendarSolid />Ingressou em {new Date(userProfile.createdAt).toDateString()}</span>
         </div>
     )
 }
