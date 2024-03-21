@@ -2,9 +2,11 @@ import { Button } from "@mui/material"
 import { useContext } from "react"
 import { authContext } from "../../../context/Auth"
 import styles from "./styles.module.scss"
+import ProfileContext from "../../../context/ProfileContext"
 
-function ProfileNamesTitle({ userProfile }) {
+function ProfileNamesTitle() {
     const { user } = useContext(authContext)
+    const { userProfile, setOpenModal } = useContext(ProfileContext)
 
     return (
         <div className={styles.names}>
@@ -18,7 +20,7 @@ function ProfileNamesTitle({ userProfile }) {
                 <span><span className={styles.followValue}>21</span> Seguidores</span>
             </div>
             {user._id === userProfile._id ? (
-                <Button variant="outlined" color="inherit">Editar Perfil</Button>
+                <Button onClick={() => setOpenModal(true)} variant="outlined" color="inherit">Editar Perfil</Button>
             ) : (
                 <Button variant="outlined" color="inherit">Seguir</Button>
             )}

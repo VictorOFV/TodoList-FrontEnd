@@ -1,8 +1,11 @@
+import { useContext } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { Button } from "@mui/material"
 import styles from "./styles.module.scss"
+import ProfileContext from "../../../context/ProfileContext"
 
-function ProfileNav({ userProfile }) {
+function ProfileNav() {
+    const { userProfile } = useContext(ProfileContext)
     const { pathname } = useLocation()
 
     return (
