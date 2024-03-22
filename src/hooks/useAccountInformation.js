@@ -9,7 +9,7 @@ function useAccountInformation() {
         name: user.name ?? null,
         email: user.email ?? null,
         username: user.username ?? null,
-        dateOfBirth: user.dateOfBirth.split("T")[0] ?? null,
+        dateOfBirth: user.dateOfBirth?.split("T")[0] ?? null,
         gender: user.gender ?? ""
     })
 

@@ -1,8 +1,9 @@
-import { Box, Button, Modal, TextField } from "@mui/material"
+import { Box, Button, FormControl, InputLabel, MenuItem, Modal, Select, TextField } from "@mui/material"
 import { FaUser } from "react-icons/fa";
 import { LoadingButton } from "@mui/lab";
 import { useDropzone } from "react-dropzone";
 import { useCallback, useContext, useState } from "react";
+import { jobs } from "../../utils/jobs.json"
 import ProfileContext from "../../context/ProfileContext";
 import noAvatar from "../../assets/noAvatar.jpg"
 import noBanner from "../../assets/noBanner.svg"
@@ -87,6 +88,7 @@ function FormModalProfile() {
                         <TextField
                             name="fullname"
                             value={userData.name}
+                            onChange={ev => setUserData(prevState => ({ ...prevState, name: ev.target.value }))}
                             label="Nome"
                             variant="filled"
                             helperText=""
@@ -100,25 +102,62 @@ function FormModalProfile() {
                         <TextField
                             name="bio"
                             value={userData.bio}
+                            onChange={ev => setUserData(prevState => ({ ...prevState, bio: ev.target.value }))}
                             label="Bio"
                             variant="filled"
                             multiline
                             rows={3}
                             helperText=""
                             error={false}
-                            required sx={
+                            sx={
                                 {
                                     backgroundColor: "#00000030"
                                 }
                             }
                         />
+                        <FormControl variant="filled" fullWidth>
+                            <InputLabel id="select">Profissão</InputLabel>
+                            <Select
+                                name="profession"
+                                value={userData.profession ? userData.profession : ""}
+                                onChange={ev => setUserData(prevState => ({ ...prevState, profession: ev.target.value }))}
+                                label="Prioridade"
+                                labelId="select"
+                                MenuProps={{
+                                    PaperProps: {
+                                        style: {
+                                            maxHeight: "12rem",
+                                            maxWidth: "5rem",
+                                            position: "absolute",
+                                        },
+                                    },
+                                }}
+                                sx={{
+                                    color: "#fff",
+                                    maxHeight: "5rem",
+                                    backgroundColor: "#02022B",
+                                    "& .MuiSelect-icon": {
+                                        fill: "#fff"
+                                    },
+                                    "&:hover": {
+                                        backgroundColor: "#02022B"
+                                    }
+                                }}
+                            >
+                                {jobs.sort((a, b) => a.translatedName.localeCompare(b.translatedName)).map(job => (
+                                    <MenuItem value={job.name}>{job.translatedName}</MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
                         <TextField
                             name="location"
+                            value={userData.location}
+                            onChange={ev => setUserData(prevState => ({ ...prevState, location: ev.target.value }))}
                             label="Localização"
                             variant="filled"
                             helperText=""
                             error={false}
-                            required sx={
+                            sx={
                                 {
                                     backgroundColor: "#00000030"
                                 }
@@ -126,11 +165,13 @@ function FormModalProfile() {
                         />
                         <TextField
                             name="site"
+                            value={userData.site}
+                            onChange={ev => setUserData(prevState => ({ ...prevState, site: ev.target.value }))}
                             label="Site"
                             variant="filled"
                             helperText=""
                             error={false}
-                            required sx={
+                            sx={
                                 {
                                     backgroundColor: "#00000030"
                                 }

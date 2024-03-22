@@ -25,6 +25,20 @@
 
     .modalBody {
         padding: .5rem 1rem;
+        max-height: 30rem;
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            width: 5px;
+            background-color: transparent;
+            border-radius: 20px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #1976D2;
+            border-radius: 20px;
+            height: 25px;
+        }
     }
 
     .modalFooter {

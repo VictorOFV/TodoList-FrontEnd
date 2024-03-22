@@ -46,9 +46,11 @@ function Profile() {
             const formData = new FormData()
 
             for (let data in userData) {
-                formData.append(data, userData[data])
+                if (userData[data] !== null) {
+                    formData.append(data, userData[data])
+                }
             }
-    
+
             const response = await api.put(`/users/${user._id}`, formData)
             setUser(response.data.user)
             localStorage.setItem("@user", JSON.stringify(response.data.user))
