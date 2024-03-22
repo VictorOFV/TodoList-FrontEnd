@@ -6,7 +6,7 @@ import ProfileContext from "../../../context/ProfileContext"
 
 function ProfileNamesTitle() {
     const { user } = useContext(authContext)
-    const { userProfile, setOpenModal } = useContext(ProfileContext)
+    const { userProfile, setOpenModal, follow, unfollow } = useContext(ProfileContext)
 
     return (
         <div className={styles.names}>
@@ -16,13 +16,19 @@ function ProfileNamesTitle() {
                 <span className={styles.username}>@{userProfile.username}</span>
             </div>
             <div className={styles.followers}>
-                <span><span className={styles.followValue}>15</span> Seguindo</span>
-                <span><span className={styles.followValue}>21</span> Seguidores</span>
+                <span><span className={styles.followValue}>{userProfile.following.length}</span> Seguindo</span>
+                <span><span className={styles.followValue}>{userProfile.followers.length}</span> Seguidores</span>
             </div>
             {user._id === userProfile._id ? (
                 <Button onClick={() => setOpenModal(true)} variant="outlined" color="inherit">Editar Perfil</Button>
             ) : (
-                <Button variant="outlined" color="inherit">Seguir</Button>
+                <>
+                    {userProfile.followers.includes(user._id) ? (
+                        <Button onClick={unfollow} variant="outlined" color="inherit">Deixar de Seguir</Button>
+                    ) : (
+                        <Button onClick={follow} variant="outlined" color="inherit">Seguir</Button>
+                    )}
+                </>
             )}
         </div>
     )

@@ -60,6 +60,16 @@ function Profile() {
         }
     }
 
+    const follow = async () => {
+        const response = await api.post(`/users/${userProfile._id}/follow`)
+        setUser(response.data.user)
+    }
+
+    const unfollow = async () => {
+        const response = await api.post(`/users/${userProfile._id}/unfollow`)
+        setUser(response.data.user)
+    }
+
     const closeModal = () => {
         setOpenModal(false)
         cleanInputs()
@@ -74,7 +84,7 @@ function Profile() {
     }
 
     return (
-        <ProfileContext.Provider value={{ userProfile, openModal, userData, loadingButton, closeModal, setOpenModal, setUserData, updateUser }}>
+        <ProfileContext.Provider value={{ userProfile, openModal, userData, loadingButton, follow, unfollow, closeModal, setOpenModal, setUserData, updateUser }}>
             <div>
                 <div className={styles.profileContainer}>
                     {loading ?
