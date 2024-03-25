@@ -1,7 +1,3 @@
-import { useContext, useEffect, useState } from "react"
-import { authContext } from "../../context/Auth"
-import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
 import Skeleton from "react-loading-skeleton";
 import styles from "./styles.module.scss"
 import border from "../../assets/fundo.png"
@@ -13,97 +9,32 @@ import noBanner from "../../assets/noBanner.svg"
 import noAvatar from "../../assets/noAvatar.jpg"
 import FormModalProfile from "../FormModalProfile";
 import ProfileContext from "../../context/ProfileContext";
+import useProfile from "../../hooks/useProfile";
 
 function Profile() {
-    const { user, api, setUser } = useContext(authContext)
-    const { username } = useParams()
-    const [userProfile, setUserProfile] = useState(null)
-    const [loading, setLoading] = useState(true)
-    const [loadingButton, setLoadingButton] = useState(false)
-    const [openModal, setOpenModal] = useState(false)
-    const [userData, setUserData] = useState({
-        ...user,
-        avatarURL: user.avatar,
-        bannerURL: user.banner
-    })
-
-    useEffect(() => {
-        const getUserProfile = async () => {
-            try {
-                if (user.username === username) return setUserProfile(user)
-                const response = await api.get(`/users/${username}`)
-                setUserProfile(response.data.user)
-            } finally {
-                setLoading(false)
-            }
-        }
-        getUserProfile()
-    }, [username, user])
-
-    const updateUser = async () => {
-        try {
-            setLoadingButton(true)
-            const formData = new FormData()
-
-            for (let data in userData) {
-                if (userData[data] !== null) {
-                    formData.append(data, userData[data])
-                }
-            }
-
-            const response = await api.put(`/users/${user._id}`, formData)
-            setUser(response.data.user)
-            localStorage.setItem("@user", JSON.stringify(response.data.user))
-            toast.success("Perfil editado com sucesso! 😁")
-        } finally {
-            setLoadingButton(false)
-        }
-    }
-
-    const follow = async () => {
-        const response = await api.post(`/users/${userProfile._id}/follow`)
-        setUser(response.data.user)
-    }
-
-    const unfollow = async () => {
-        const response = await api.post(`/users/${userProfile._id}/unfollow`)
-        setUser(response.data.user)
-    }
-
-    const closeModal = () => {
-        setOpenModal(false)
-        cleanInputs()
-    }
-
-    const cleanInputs = () => {
-        setUserData({
-            ...user,
-            avatarURL: user.avatar,
-            bannerURL: user.banner
-        })
-    }
+    const profile = useProfile()
 
     return (
-        <ProfileContext.Provider value={{ userProfile, openModal, userData, loadingButton, follow, unfollow, closeModal, setOpenModal, setUserData, updateUser }}>
+        <ProfileContext.Provider value={profile}>
             <div>
                 <div className={styles.profileContainer}>
-                    {loading ?
+                    {profile.loading ?
                         (<Skeleton className={styles.banner} baseColor="#011853" highlightColor="#1565C0" />) :
-                        (<img className={styles.banner} src={userProfile.banner ?? noBanner} />)}
+                        (<img className={styles.banner} src={profile.userProfile.banner ?? noBanner} />)}
 
                     <div className={styles.avatar} style={{ backgroundImage: `url(${border})` }}>
-                        {loading ? (<Skeleton className={styles.avatarImage} baseColor="#011853" highlightColor="#1565C0" />) :
-                            (<img className={styles.avatarImage} src={userProfile.avatar ?? noAvatar} />)}
+                        {profile.loading ? (<Skeleton className={styles.avatarImage} baseColor="#011853" highlightColor="#1565C0" />) :
+                            (<img className={styles.avatarImage} src={profile.userProfile.avatar ?? noAvatar} />)}
                     </div>
 
-                    {loading ? null : (
+                    {profile.loading ? null : (
                         <>
                             <div className={styles.infoContainer}>
                                 <ProfileNamesTitle />
                                 <ProfileAboutMe />
                                 <ProfileUserInfo />
                             </div>
-                            <ProfileNav userProfile={userProfile} />
+                            <ProfileNav />
                         </>
                     )}
                 </div>

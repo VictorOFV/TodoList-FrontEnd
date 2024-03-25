@@ -10,7 +10,7 @@ function ProfileAboutMe() {
             <h4 className={styles.aboutMeText}>
                 <BiSolidUserDetail size={25} /> SOBRE MIM
             </h4>
-            <p>{userProfile.bio}</p>
+            {!userProfile.bio ? null : (<p>{userProfile.bio}</p>)}
         </div>
     )
 }

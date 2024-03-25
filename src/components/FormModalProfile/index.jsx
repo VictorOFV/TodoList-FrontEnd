@@ -43,8 +43,8 @@ function FormModalProfile() {
         }))
     }
 
-    const { getRootProps: getAvatarRootProps, getInputProps: getAvatarInputProps } = useDropzone({ onDrop: onAvatarDrop, multiple: false });
-    const { getRootProps: getBannerRootProps, getInputProps: getBannerInputProps } = useDropzone({ onDrop: onBannerDrop, multiple: false });
+    const avatarInput = useDropzone({ onDrop: onAvatarDrop, multiple: false });
+    const bannerInput = useDropzone({ onDrop: onBannerDrop, multiple: false });
 
     return (
         <Modal
@@ -62,23 +62,23 @@ function FormModalProfile() {
                     <div className={styles.inputs}>
                         <div className={styles.dropzoneContainer}>
                             <div
-                                {...getBannerRootProps()}
+                                {...bannerInput.getRootProps()}
                                 className={styles.dropzoneBanner}
                                 onDragOver={() => onDragOver('banner')}
                                 onDragLeave={() => onDragLeaveAndOnDrop('banner')}
                             >
-                                <input {...getBannerInputProps()} />
+                                <input {...bannerInput.getInputProps()} />
                                 <img src={userData.bannerURL ?? noBanner} className={isDragging.banner ? styles.dragging : ''} />
                                 <p>Selecionar Novo Banner</p>
                             </div>
                             <div>
                                 <div
-                                    {...getAvatarRootProps()}
+                                    {...avatarInput.getRootProps()}
                                     className={styles.dropzoneAvatar}
                                     onDragOver={() => onDragOver('avatar')}
                                     onDragLeave={() => onDragLeaveAndOnDrop('avatar')}
                                 >
-                                    <input name="avatar" {...getAvatarInputProps()} />
+                                    <input name="avatar" {...avatarInput.getInputProps()} />
                                     <img src={userData.avatarURL ?? noAvatar} className={isDragging.avatar ? styles.dragging : ''} />
                                     <p>Escolher Novo Avatar</p>
                                 </div>
@@ -127,8 +127,8 @@ function FormModalProfile() {
                                     PaperProps: {
                                         style: {
                                             maxHeight: "12rem",
-                                            maxWidth: "5rem",
-                                            position: "absolute",
+                                            background: "#02022C",
+                                            color: "#fff",
                                         },
                                     },
                                 }}
@@ -145,7 +145,7 @@ function FormModalProfile() {
                                 }}
                             >
                                 {jobs.sort((a, b) => a.translatedName.localeCompare(b.translatedName)).map(job => (
-                                    <MenuItem value={job.name}>{job.translatedName}</MenuItem>
+                                    <MenuItem key={job.name} value={job.name}>{job.translatedName}</MenuItem>
                                 ))}
                             </Select>
                         </FormControl>

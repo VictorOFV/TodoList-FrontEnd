@@ -8,7 +8,6 @@ import FooterForm from "../../components/FormLoginAndRegister/FooterForm";
 import BodyForm from "../../components/FormLoginAndRegister/BodyForm";
 import useLogin from "../../hooks/useLogin";
 
-
 function Login() {
     const { email, password, loading, setEmail, setPassword, handleSubmit } = useLogin()
  
